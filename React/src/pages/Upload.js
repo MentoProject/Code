@@ -241,7 +241,7 @@ h2{\
 
     </Navbar>
     <div className="top d-lg-none d-flex">
-    <div className="container bg-white">
+    <div className="container bg-white" style={{maxWidth:'none'}}>
     <div className="row justify-content-between">
         <div className="col-5" style={{marginLeft:"20px",fontSize:"40px"}}>
             <button onClick={()=> history(-1)}  style={{background: "none",border:"none"}}> <FontAwesomeIcon icon={faArrowLeft}/></button>

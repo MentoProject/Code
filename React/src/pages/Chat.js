@@ -115,11 +115,11 @@ const Chat = () => {
 
       </Navbar>
       <main class="content "  >
-    <div class="containr p-0 py-lg-2 px-lg-5 mt-lg-3 mt-0">
+    <div class="containr p-0 py-lg-2 px-lg-5 mt-lg-3 mt-0 md:margin-0">
 
 
 		<div class="card">
-			<div class="row g-0">
+			<div  class="row g-0" >
 				<div class="col-12 col-lg-5 col-xl-3 border-right">
 
 					<div class="px-4 ">

@@ -13,6 +13,8 @@ import { useNavigate } from 'react-router-dom';
 
 import '../assets/css/boostrap.min.css'
 import image from '../assets/images/image.jpg'
+import star from '../assets/images/star.svg'
+import chat from '../assets/images/chat.svg'
 import profile from '../assets/images/profile.jpg'
 
 const ViewPage = () => {
@@ -118,7 +120,7 @@ z-index: 120;\
   }</style>
      <div class="posts_cards">
 <div class="top d-lg-none d-flex">
-    <div class="container bg-white">
+    <div class="container bg-white" style={{maxWidth:'none'}}>
       <div class="row justify-content-between">
         <div class="col-5" style={{marginLeft:"20px",fontSize:"40px"}}>
             <button onClick={()=> history(-1)}  style={{background: "none",border:"none"}}> <FontAwesomeIcon icon={faArrowLeft} /></button>
@@ -142,8 +144,17 @@ z-index: 120;\
 
           <h2 style={{fontSize:"25px",fontWeight:"bold"}}>Why im so good at front-end ?</h2>
           <br></br>
-          <div class="index_image mt-2" style={{height:"500px"}}>
-            <img src={image} style={{objectFit:"cover",borderRadius:"30px",height:"100%"}} alt=""></img>
+          <div className='relative'>
+            
+            <div class="index_image mt-2" style={{height:"500px"}}>
+              <img src={image} style={{objectFit:"cover",borderRadius:"30px",height:"100%"}} alt=""></img>
+            </div>
+            <div className='md:hidden absolute top-[-30px] right-[40px]  rounded-[30px] w-[70px] h-[70px] bg-white  border-1 border-whiteColor'>
+                <img src={star} style={{marginTop:"20%", objectFit:"cover",height:"60%",width:"60%", marginLeft:"20%" }} alt=""></img>
+            </div>
+            <div className='md:hidden absolute top-[-30px] right-[130px]  rounded-[30px] w-[70px] h-[70px] bg-white  border-1 border-whiteColor'>
+              <img src={chat} style={{marginTop:"20%", objectFit:"cover",height:"60%",width:"60%", marginLeft:"20%" }} alt=""></img>
+            </div>
           </div>
           <br></br>
           <div class="desc">

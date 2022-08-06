@@ -112,10 +112,10 @@ const MobileChat = () => {
 
 		</Navbar>
            <main class="content "  >
-    <div class="container p-0" style={{marginTop:'2px'}}>
+    <div class="container p-0" style={{marginTop:'2px', maxWidth:'none'}}>
 
 
-		<div class="card">
+		<div class="card" >
 			<div class="row g-0">
 				<div class="col-12 col-lg-5 col-xl-3 border-right d-lg-block d-none">
 

@@ -1,163 +1,156 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeader, faHeart, faUserPlus, faUserSlash } from '@fortawesome/free-solid-svg-icons';
-import { faHeartBroken }  from '@fortawesome/free-solid-svg-icons';
-import { faMessage }  from '@fortawesome/free-solid-svg-icons';
+
 import Navbar from '../Navbar';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 import React, { useState, useEffect } from 'react';
-
-import image from '../assets/images/image.jpg'
-import profile from '../assets/images/profile.jpg'
-import { faGear } from '@fortawesome/free-solid-svg-icons';
-import { faCircleCheck }  from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
-
+import { FaBars } from "react-icons/fa";
+import Sidebar from "react-sidebar";
+import SettingSidebar from "../SettingSidebar";
 
 const Settings = () => {
-  return (
-    <div>
-   <Navbar>
-
-   </Navbar>
-   <style>{"\
-      label {\
-	   font-size:1.0rem;\
-       color:#000\
-	  }\
-    "
-    }</style>
-<section style={{marginTop:"100px"}}>
-
-		<div class="container">
-			<div class="bg-white  rounded-lg d-sm-flex" style={{border:"2px solid #F0EEF6"}}>
-				<div class="profile-tab-nav border-right">
-					<div class="p-4">
-						<div class="img-circle text-center mb-3" style={{display:"flex",justifyContent: "center",alignItems: "center"}}>
-
-							<img src={profile} alt="Image" class="shadow" style={{position: "relative",height:"60px",width:"60px",borderRadius:"50px"}}></img>
-                            <div class="pen" style={{cursor: "pointer"}}>
-                                <i class="fa-solid fa-pen-to-square" ></i>
-                            </div>
-
-						</div>
-						<h4 class="text-center"></h4>
-					</div>
-					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<div style={{cursor: "pointer" , padding: "0.625rem 6rem"}} class="nav-link active" id="account-tab" data-toggle="pill" role="tab" aria-controls="account" aria-selected="true">
-							<h2>Account</h2>
-						</div>
-							<div style={{cursor: "pointer"}} class="nav-link" id="banner-tab" data-toggle="pill" role="tab" aria-controls="banner" aria-selected="false">
-							<i class="fa-solid fa-user mr-1"></i> 
-							Banner
-						</div>
-						<div style={{cursor: "pointer" }} class="nav-link" id="password-tab" data-toggle="pill" role="tab" aria-controls="password" aria-selected="false">
-							<i class="fa fa-key text-center mr-1"></i> 
-							Password
-						</div>
-					
-
-					</div>
-				</div>
-				<div class="tab-content p-4 p-md-5 w-100" id="v-pills-tabContent">
-					<div class="tab-pane acc-set fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
-						<h1 class="mb-4  " style={{fontSize:"24px",fontWeight:"bold",color:"#000"}}>Account Settings</h1>
-            			<h1 class="err err-pay"></h1>
-						<div class="row">
-							<div class="col-md-6">
-									<div class="form-group">
-								<label>Name</label>
-								<input type="text" class="form-control inp-paypal" placeholder="Enter your name"></input>
-								
-								</div>
-								<div class="form-group">
-								<label>Password</label>
-								<input type="text" class="form-control inp-paypal" placeholder="Enter your password"></input>
-								
-								</div>
-							</div>
-							<div class="col-md-6">
-							
-							<div class="form-group">
-								<label>Paypal</label>
-								<input type="text" class="form-control inp-paypal" placeholder="Enter your paypal"></input>
-								
-								</div>
-								<div class="form-group">
-								<label>Bio</label>
-								<textarea type="text" class="form-control inp-bio" placeholder="Bio"  style={{resize: "none"}}></textarea>
-								</div>
-							</div>
-						</div>
-						<div style={{display: "flex",marginTop:"20px"}}>
-							<button class="btn btn-account" style={{backgroundColor: "#000",color:"#fff"}}>Update</button>
-							<button onclick="javascript:window.history.back(-1);return false;" class="btn btn-light">Cancel</button>
-						</div>
-					</div>
-					<div class="tab-pane acc-set fade " id="pfp" role="tabpanel" aria-labelledby="account-tab">
-						<h3 class="mb-4">Profile Pic Settings</h3>
-            			<h1 class="err err-pfp"></h1>
-						<div class="row pfp-row" >
-							<input type="file" name="pfp" id="pfp-inp" style={{display: "none"}} ></input>
-							<div class="pfp-file-inp" onclick="$('#pfp-inp').click()"><i class="fa fa-camera pfp-icon"></i></div>
-						</div>
-						<div style={{display: "flex"}}>
-							<button class="btn btn-pfp" style={{backgroundColor: "#000",color:"#fff"}}>Update</button>
-							<button onclick="javascript:window.history.back(-1);return false;" class="btn btn-light">Cancel</button>
-						</div>
-					</div>
-					<div class="tab-pane acc-set fade " id="banner" role="tabpanel" aria-labelledby="account-tab">
-						<h3 class="mb-4">Change Banner </h3>
-            			<h1 class="err err-banner"></h1>
-						<div class="row banner-row" >
-							<input type="file" name="banner" id="banner-inp" style={{display: "none"}} ></input>
-							<div class="banner-file-inp" onclick="$('#banner-inp').click()"><i class="fa fa-camera banner-icon"></i></div>
-						</div>
-						<div style={{display: "flex"}}>
-							<button class="btn btn-banner" style={{backgroundColor: "#000",color:"#fff"}}>Update</button>
-							<button onclick="javascript:window.history.back(-1);return false;" class="btn btn-light">Cancel</button>
-						</div>
-					</div>
-					<div class="tab-pane acc-set fade " id="password" role="tabpanel" aria-labelledby="password-tab">
-						<h3 class="mb-4">Password Settings</h3>
-            			<h1 class="err err-pass"></h1>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-								<label>Old password</label>
-								<input type="password"class="form-control inp-old-pass" placeholder="Enter your current password"></input>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-								<label>New password</label>
-								<input type="password" class="form-control inp-new-pass" placeholder="Enter your new password"></input>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-								<label>Confirm new password</label>
-								<input type="password" class="form-control inp-cnf-pass" placeholder="Confirm your password"></input>
-								</div>
-							</div>
-						</div>
-						<div style={{display:"flex"}}>
-							<button class="btn btn-password" style={{backgroundColor: "#000",color:"#fff"}}>Update</button>
-							<button class="btn btn-light">Cancel</button>
-						</div>
-					</div>
-
-				</div>
+	const [index, setIndex] = useState('2');
+	const [index2, setIndex2] = useState('1');
+	const [sidebarOpen, setOpen]=useState(false);
+	return (
+		<div className='relative'>
+			<Sidebar
+				pullRight={true}
+				sidebar={<SettingSidebar index={index} index2={index2} setIndex={setIndex} setIndex2={setIndex2}/>}
+				open={sidebarOpen}
+				onSetOpen={setOpen}
+				styles={{ sidebar: { background: "white", zIndex:'125', display:'absolute', position:'fixed' } }}
+			>
+			</Sidebar>
+			<FaBars className='mt-[18px] z-[130] fixed right-[20px] text-5xl md:hidden ' onClick={()=>setOpen(!sidebarOpen)}/>
+			<div className='' >
+				<Navbar className='md:block sm:hidden' />
 			</div>
-		</div>
-	</section>
+			<section className="min-w-full min-h-screen  pt-[100px] h-full">
+				<div className='flex flex-row'>
+					<div className='w-[280px] px-[20px] mr-[20px] sm:hidden md:block'>
+						<p className=' text-5xl font-[700] mb-[20px] ml-[20px]'>Settings</p>
+						<div className='rounded-[45px] bg-white px-[15px] py-[25px] border-1 border-selectColor cursor-pointer'>
+							<p onClick={() => { setIndex(1) }} className={'w-full px-[20px] text-3xl font-[700] mb-[40]' + (index == 1 ? " bg-selectColor rounded-[15px]" : "")}>Account</p>
+							<p onClick={() => { setIndex(2) }} className={'w-full px-[20px] text-3xl font-[700] mb-[40] ' + (index == 2 ? " bg-selectColor rounded-[15px]" : "")}>Profile</p>
+							<p onClick={() => { setIndex(3) }} className={'w-full px-[20px] text-3xl font-[700] mb-[40]' + (index == 3 ? " bg-selectColor rounded-[15px]" : "")}>Language</p>
+						</div>
+						<div className='mt-[50px] rounded-[45px] bg-white px-[15px] py-[25px] border-1 border-selectColor'>
+							<button onClick={() => { setIndex2(1) }} className={'px-[20px] text-3xl font-[700] mb-[40]' + (index2 == 1 ? " text-selecttextColor" : "")}>Workspace</button>
+							<button onClick={() => { setIndex2(2) }} className={'px-[20px] text-3xl font-[700] mb-[40]' + (index2 == 2 ? " text-selecttextColor" : "")}>Donate</button>
+							<button onClick={() => { setIndex2(3) }} className={'px-[20px] text-3xl font-[700] mb-[40]' + (index2 == 3 ? " text-selecttextColor" : "")}>Plans</button>
+						</div>
+					</div>
+					<div className='w-full relative'>
+						<button className='mt-[20px] py-[1px] w-[120px] bg-blackColor rounded-full text-white text-2xl font-[700] absolute right-[50px]'>Save</button>
+						<div className='pt-[40px] px-[30px] border-1 border-selectColor mt-[80px] h-full rounded-[50px] mx-[30px] pb-[50px]'>
+							<div className='relative h-[370px]'>
+								<div className=' w-full rounded-[40px] h-[240px] bg-selectColor relative'>
+									<button className='text-3xl font-[700] absolute top-[20px] right-[40px]'>Edit</button>
+								</div>
+								<div className='absolute rounded-full w-[150px] h-[150px] top-[150px] left-[70px] bg-selectColor border-blackColor border-1 '>
+								</div>
+								<button className='text-3xl font-[700] ml-[240px]'>Edit</button>
+							</div>
+							<div className='sm:ml-[20px] md:ml-[70px]'>
+								<p className='text-2xl font-[700]'>Name</p>
+								<div className='flex flex-row w-full items-center'>
+									<div className='ml-[35px] w-[2px] h-[50px] bg-selectColor'> </div>
+									<div className=' ml-[50px] max-w-[400px] w-full'>
+										<input
+											className="
+												form-control
+												px-3
+												py-1.5
+												font-normal
+												text-gray-700
+												bg-white bg-clip-padding
+												border border-solid border-gray-300
+												rounded-[14px]
+												transition
+												ease-in-out
+												m-0
+											"
+											placeholder="Enter your name"
+										/>
+									</div>
+								</div>
+								<p className='ml-[20px] text-2xl font-[700]'>Bio</p>
+								<div className='flex flex-row w-full items-center'>
+									<div className='ml-[35px] w-[2px] h-[150px] bg-selectColor'> </div>
+									<div className=' ml-[50px] max-w-[600px] w-full'>
+										<textarea
+										class="
+											resize-none
+											form-control
+											block
+											w-full
+											px-3
+											py-1.5
+											text-base
+											font-normal
+											text-gray-700
+											bg-white bg-clip-padding
+											border border-solid border-gray-300
+											rounded
+											transition
+											ease-in-out
+											m-0
+											focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+										"
+										rows="3"
+										placeholder="Enter your bio"
+										></textarea>
+										<label className="form-label inline-block mb-2 text-gray-700 text-sm font-[700]"
+										>300 charachter</label>
+									</div>
+								</div>
+								<p className='text-2xl font-[700]'>Password</p>
+								<div className='flex flex-row w-full items-center'>
+									<div className=' ml-[85px] max-w-[400px] w-full'>
+										<input
+											className="
+												form-control
+												px-3
+												py-1.5
+												font-normal
+												text-gray-700
+												bg-white bg-clip-padding
+												border border-solid border-gray-300
+												rounded-[14px]
+												transition
+												ease-in-out
+												m-0
+											"
+											placeholder="Enter your name"
+										/>
+										<div className='h-[15px]'></div>
+										<input
+											className="
+											    mt-[26px]
+												form-control
+												px-3
+												py-1.5
+												font-normal
+												text-gray-700
+												bg-white bg-clip-padding
+												border border-solid border-gray-300
+												rounded-[14px]
+												transition
+												ease-in-out
+												m-0
+											"
+											placeholder="Enter your name"
+										/>
+									</div>
+								</div>
 
-      
-    </div>
-  )
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+			
+		</div>
+	)
 }
 
 export default Settings
