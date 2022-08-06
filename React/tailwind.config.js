@@ -30,7 +30,20 @@ module.exports = {
       'priamry':'#23f649',
     },
     extend: {
-      
+      colors: {
+        selectColor:"#D9D9D9",
+        selecttextColor:"#64748b",
+        blackColor:"#0f172a"
+      },
+      boxShadow: {
+        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+      },
+      screens: {
+        sm:'100px',
+        md: '991px',
+        laptop: '1050px',
+        desktop: '1400px',
+      }
     },
   },
   plugins: [],

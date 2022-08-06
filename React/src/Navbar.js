@@ -8,7 +8,8 @@ import {faUser} from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
-const Navbar = () => {
+
+const Navbar = (props) => {
     let baseURL = 'http://localhost:1000'
     let [pfp,setPfp] = useState('')
     useEffect(()=>{
@@ -119,13 +120,13 @@ const Navbar = () => {
 
             </a>
             <a href="/search" id="search" className="au">
-                <FontAwesomeIcon style={{fontSize:'25px',color:'#9E9EA7'}} icon={faSearch} />
+                <FontAwesomeIcon  className={props.className}  style={{fontSize:'25px',color:'#9E9EA7'}} icon={faSearch} />
             </a>
             {(pfp !== '')?(<div style={{cursor:'pointer'}} onClick={logout}>
                 <FontAwesomeIcon style={{fontSize:'25px',color:'#9E9EA7'}} icon={faArrowRightFromBracket}/>
             </div>):''}
-            <div className="profile me-2 me-xl-0">
-            <a className="UserImage" href={"/profile"}>
+            <div className=" profile me-2 me-xl-0 ">
+            <a className={props.className+" UserImage"} href={"/profile"}>
                 <img src={(pfp !== '')?pfp:profile} alt="User Profile Image"></img>
             </a>
             </div>
